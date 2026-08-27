@@ -847,6 +847,25 @@ fun SettingsScreen(vm: AdbViewModel) {
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
 
+                        Spacer(Modifier.height(4.dp))
+
+                        Text(
+                            text = stringResource(
+                                R.string.settings_about_localization_credit,
+                                BuildConfig.LOCALIZATION_MAINTAINER
+                            ),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+
+                        Spacer(Modifier.height(8.dp))
+
+                        Text(
+                            text = stringResource(R.string.settings_about_fork_notice),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+
                         Spacer(Modifier.height(12.dp))
 
                         Row(
@@ -882,15 +901,29 @@ fun SettingsScreen(vm: AdbViewModel) {
 
                         Spacer(Modifier.height(8.dp))
 
-                        Text(
-                            text = stringResource(R.string.settings_about_source_code),
-                            style = MaterialTheme.typography.bodyMedium.copy(
-                                textDecoration = TextDecoration.Underline
-                            ),
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.clickable { openUrl(BuildConfig.SOURCE_CODE_URL) }
-                        )
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(20.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = stringResource(R.string.settings_about_source_code),
+                                style = MaterialTheme.typography.bodyMedium.copy(
+                                    textDecoration = TextDecoration.Underline
+                                ),
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.clickable { openUrl(BuildConfig.SOURCE_CODE_URL) }
+                            )
+                            Text(
+                                text = stringResource(R.string.settings_about_upstream_project),
+                                style = MaterialTheme.typography.bodyMedium.copy(
+                                    textDecoration = TextDecoration.Underline
+                                ),
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.clickable { openUrl(BuildConfig.UPSTREAM_PROJECT_URL) }
+                            )
+                        }
                     }
                 }
             }

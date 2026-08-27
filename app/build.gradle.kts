@@ -49,10 +49,12 @@ android {
 
         buildConfigField("String", "APP_NAME", "\"Dioxamine\"")
         buildConfigField("String", "AUTHOR", "\"rhythmcache\"")
+        buildConfigField("String", "LOCALIZATION_MAINTAINER", "\"riyousa\"")
         buildConfigField("String", "COPYRIGHT_YEAR", "\"$currentYear\"")
         buildConfigField("String", "GITHUB_URL", "\"https://github.com/rhythmcache/\"")
         buildConfigField("String", "TELEGRAM_URL", "\"https://t.me/tr1ple_fault\"")
-        buildConfigField("String", "SOURCE_CODE_URL", "\"https://github.com/rhythmcache/Dioxamine\"")
+        buildConfigField("String", "SOURCE_CODE_URL", "\"https://github.com/riyousa/Dioxamine\"")
+        buildConfigField("String", "UPSTREAM_PROJECT_URL", "\"https://github.com/rhythmcache/Dioxamine\"")
         buildConfigField("String", "TERMINAL_PLUGIN_URL", "\"https://github.com/rhythmcache/Terminal\"")
         buildConfigField("String", "PLUGIN_DOCS_URL", "\"https://rhythmcache.github.io/Dioxamine/book/plugins/overview.html\"")
     }
