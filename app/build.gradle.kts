@@ -20,6 +20,7 @@ plugins {
 android {
     namespace = "io.github.rhythmcache.dioxamine"
     compileSdk = 37
+    ndkVersion = "29.0.14206865"
 
     signingConfigs {
         create("release") {
@@ -37,8 +38,8 @@ android {
         applicationId = "io.github.riyousa.dioxamine"
         minSdk = 24
         targetSdk = 36
-        versionCode = 10002
-        versionName = "0.0.2-stable"
+        versionCode = 10003
+        versionName = "0.0.2-zh.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
@@ -47,7 +48,7 @@ android {
 
         val currentYear = Calendar.getInstance().get(Calendar.YEAR).toString()
 
-        buildConfigField("String", "APP_NAME", "\"Dioxamine\"")
+        buildConfigField("String", "APP_NAME", "\"adb工具\"")
         buildConfigField("String", "AUTHOR", "\"rhythmcache\"")
         buildConfigField("String", "LOCALIZATION_MAINTAINER", "\"riyousa\"")
         buildConfigField("String", "COPYRIGHT_YEAR", "\"$currentYear\"")
