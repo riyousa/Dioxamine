@@ -6,9 +6,10 @@ import android.content.Intent
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
 import android.os.Build
+import io.github.rhythmcache.dioxamine.BuildConfig
 
 object UsbHelper {
-    const val ACTION_USB_PERMISSION = "io.github.rhythmcache.dioxamine.USB_PERMISSION"
+    val ACTION_USB_PERMISSION = "${BuildConfig.APPLICATION_ID}.USB_PERMISSION"
 
     // Maps UsbDevice.deviceName (e.g. "/dev/bus/usb/001/002") to connection ID ("usb:serial")
     private val deviceNameMap = mutableMapOf<String, String>()

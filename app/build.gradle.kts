@@ -34,7 +34,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "io.github.rhythmcache.dioxamine"
+        applicationId = "io.github.riyousa.dioxamine"
         minSdk = 24
         targetSdk = 36
         versionCode = 10002

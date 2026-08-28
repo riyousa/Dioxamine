@@ -28,6 +28,7 @@
 
 - 可在“设置 → 语言”中选择“简体中文”，也可跟随系统语言
 - 已覆盖主要界面、对话框、操作提示、无障碍描述及 Fastlane 商店元数据
+- 使用独立包名 `io.github.riyousa.dioxamine`，可与原项目官方版同时安装；两个版本的应用数据和设置互不相通
 - 保留英文资源作为默认语言，缺失翻译时会自动回退到英文
 - 翻译相关问题请提交到[本仓库 Issues](https://github.com/riyousa/Dioxamine/issues)；核心功能问题可先查阅[原项目 Issues](https://github.com/rhythmcache/Dioxamine/issues)
 
