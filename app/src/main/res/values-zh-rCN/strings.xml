@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Dioxamine</string>
+    <string name="app_name">adb工具</string>
 
     <!-- 导航标签 -->
     <string name="tab_adb">ADB</string>
@@ -562,9 +562,7 @@
 
     <!-- 关于 -->
     <string name="settings_about_title">关于</string>
-    <string name="settings_about_desc">应用信息、社交链接和代码仓库</string>
     <string name="settings_about_version">版本 %1$s</string>
-    <string name="settings_about_source_code">源代码</string>
     <string name="cd_github">GitHub</string>
     <string name="cd_telegram">Telegram</string>
 
