@@ -30,7 +30,7 @@
 - 已覆盖主要界面、对话框、操作提示、无障碍描述及 Fastlane 商店元数据
 - 使用独立包名 `io.github.riyousa.dioxamine`，可与原项目官方版同时安装；两个版本的应用数据和设置互不相通
 - 保留英文资源作为默认语言，缺失翻译时会自动回退到英文
-- 翻译相关问题请提交到[本仓库 Issues](https://github.com/riyousa/Dioxamine/issues)；核心功能问题可先查阅[原项目 Issues](https://github.com/rhythmcache/Dioxamine/issues)
+- 翻译相关问题请提交到[本仓库 Issues](https://github.com/riyousa/adb-mobile/issues)；核心功能问题可先查阅[原项目 Issues](https://github.com/rhythmcache/Dioxamine/issues)
 
 ## 功能
 
@@ -102,7 +102,7 @@
 递归克隆本仓库，以同时获取内嵌的 `scrcpy` 子模块：
 
 ```bash
-git clone --recursive https://github.com/riyousa/Dioxamine.git
+git clone --recursive https://github.com/riyousa/adb-mobile.git
 cd Dioxamine
 bash gradlew assembleDebug
 ```
@@ -117,7 +117,7 @@ bash gradlew assembleDebug
 
 ## 社区与问题反馈
 
-- **中文翻译问题**：[本地化仓库 Issues](https://github.com/riyousa/Dioxamine/issues)
+- **中文翻译问题**：[本地化仓库 Issues](https://github.com/riyousa/adb-mobile/issues)
 - **原项目 Telegram 频道**：[t.me/tr1ple_fault](https://t.me/tr1ple_fault)
 - **核心功能问题与建议**：[原项目 Issues](https://github.com/rhythmcache/Dioxamine/issues)
 
@@ -126,7 +126,7 @@ bash gradlew assembleDebug
 本地化版本基于 [rhythmcache/Dioxamine](https://github.com/rhythmcache/Dioxamine) 修改，感谢原作者 **rhythmcache** 及所有上游贡献者开发和维护 Dioxamine。上游项目使用的 ADB、Fastboot、Scrcpy 及其他第三方组件，其版权和许可归各自作者所有。
 
 - **原项目与核心开发**：[rhythmcache/Dioxamine](https://github.com/rhythmcache/Dioxamine)
-- **简体中文本地化**：[riyousa/Dioxamine](https://github.com/riyousa/Dioxamine)
+- **简体中文本地化**：[riyousa/adb-mobile](https://github.com/riyousa/adb-mobile)
 - **原项目文档**：[Dioxamine Book](https://rhythmcache.github.io/Dioxamine/book/)
 
 ## 许可证
