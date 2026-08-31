@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             var currentUseMonet by remember {
-                mutableStateOf(prefsState.getBoolean("use_monet", true))
+                mutableStateOf(prefsState.getBoolean("use_monet", false))
             }
 
             DisposableEffect(Unit) {
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                         currentAppTheme = runCatching { AppTheme.valueOf(prefs.getString("theme_mode", "SYSTEM") ?: "SYSTEM") }
                             .getOrDefault(AppTheme.SYSTEM)
                     } else if (key == "use_monet") {
-                        currentUseMonet = prefs.getBoolean("use_monet", true)
+                        currentUseMonet = prefs.getBoolean("use_monet", false)
                     }
                 }
                 prefsState.registerOnSharedPreferenceChangeListener(listener)

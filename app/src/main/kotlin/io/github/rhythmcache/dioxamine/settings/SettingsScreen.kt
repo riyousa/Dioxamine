@@ -13,6 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Article
+import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.FileDownload
@@ -75,7 +76,7 @@ fun SettingsScreen(vm: AdbViewModel) {
     }
 
     var useMonet by remember {
-        mutableStateOf(prefs.getBoolean("use_monet", true))
+        mutableStateOf(prefs.getBoolean("use_monet", false))
     }
 
     var loggingEnabled by remember {
@@ -140,13 +141,13 @@ fun SettingsScreen(vm: AdbViewModel) {
                     if (keyFile.exists() && keyFile.length() > 0) {
                         out.write(keyFile.readBytes())
                     } else {
-                        throw Exception(context.getString(R.string.err_no_adb_key_file))
+                        throw Exception("No ADB key file found")
                     }
                 }
             }.onSuccess {
                 Toast.makeText(context, context.getString(R.string.msg_key_exported), Toast.LENGTH_SHORT).show()
             }.onFailure { e ->
-                Toast.makeText(context, context.getString(R.string.msg_export_failed, e.message ?: ""), Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Export failed: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -164,7 +165,7 @@ fun SettingsScreen(vm: AdbViewModel) {
             }.onSuccess {
                 Toast.makeText(context, context.getString(R.string.msg_logs_exported), Toast.LENGTH_SHORT).show()
             }.onFailure { e ->
-                Toast.makeText(context, context.getString(R.string.msg_export_failed, e.message ?: ""), Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Export failed: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -212,7 +213,7 @@ fun SettingsScreen(vm: AdbViewModel) {
                     }
                     Icon(
                         imageVector = if (themeExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                        contentDescription = stringResource(if (themeExpanded) R.string.cd_collapse else R.string.cd_expand)
+                        contentDescription = if (themeExpanded) "Collapse" else "Expand"
                     )
                 }
 
@@ -321,7 +322,7 @@ fun SettingsScreen(vm: AdbViewModel) {
                     }
                     Icon(
                         imageVector = if (languageExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                        contentDescription = stringResource(if (languageExpanded) R.string.cd_collapse else R.string.cd_expand)
+                        contentDescription = if (languageExpanded) "Collapse" else "Expand"
                     )
                 }
 
@@ -359,6 +360,32 @@ fun SettingsScreen(vm: AdbViewModel) {
                                     )
                                 }
                             }
+                        }
+
+                        HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { openUrl(BuildConfig.TRANSLATION_URL) }
+                                .padding(vertical = 6.dp, horizontal = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(6.dp)
+                        ) {
+                            Icon(
+                                Icons.AutoMirrored.Filled.OpenInNew,
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                            Text(
+                                stringResource(R.string.settings_language_contribute),
+                                style = MaterialTheme.typography.bodySmall.copy(
+                                    textDecoration = TextDecoration.Underline
+                                ),
+                                fontWeight = FontWeight.Medium,
+                                color = MaterialTheme.colorScheme.primary
+                            )
                         }
                     }
                 }
@@ -504,7 +531,7 @@ fun SettingsScreen(vm: AdbViewModel) {
                     }
                     Icon(
                         imageVector = if (scrcpyExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                        contentDescription = stringResource(if (scrcpyExpanded) R.string.cd_collapse else R.string.cd_expand)
+                        contentDescription = if (scrcpyExpanded) "Collapse" else "Expand"
                     )
                 }
 
@@ -573,7 +600,7 @@ fun SettingsScreen(vm: AdbViewModel) {
                     }
                     Icon(
                         imageVector = if (logsExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                        contentDescription = stringResource(if (logsExpanded) R.string.cd_collapse else R.string.cd_expand)
+                        contentDescription = if (logsExpanded) "Collapse" else "Expand"
                     )
                 }
 
@@ -847,25 +874,6 @@ fun SettingsScreen(vm: AdbViewModel) {
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
 
-                        Spacer(Modifier.height(4.dp))
-
-                        Text(
-                            text = stringResource(
-                                R.string.settings_about_localization_credit,
-                                BuildConfig.LOCALIZATION_MAINTAINER
-                            ),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-
-                        Spacer(Modifier.height(8.dp))
-
-                        Text(
-                            text = stringResource(R.string.settings_about_fork_notice),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-
                         Spacer(Modifier.height(12.dp))
 
                         Row(
@@ -901,29 +909,15 @@ fun SettingsScreen(vm: AdbViewModel) {
 
                         Spacer(Modifier.height(8.dp))
 
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(20.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = stringResource(R.string.settings_about_source_code),
-                                style = MaterialTheme.typography.bodyMedium.copy(
-                                    textDecoration = TextDecoration.Underline
-                                ),
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.clickable { openUrl(BuildConfig.SOURCE_CODE_URL) }
-                            )
-                            Text(
-                                text = stringResource(R.string.settings_about_upstream_project),
-                                style = MaterialTheme.typography.bodyMedium.copy(
-                                    textDecoration = TextDecoration.Underline
-                                ),
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.clickable { openUrl(BuildConfig.UPSTREAM_PROJECT_URL) }
-                            )
-                        }
+                        Text(
+                            text = stringResource(R.string.settings_about_source_code),
+                            style = MaterialTheme.typography.bodyMedium.copy(
+                                textDecoration = TextDecoration.Underline
+                            ),
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.clickable { openUrl(BuildConfig.SOURCE_CODE_URL) }
+                        )
                     }
                 }
             }
