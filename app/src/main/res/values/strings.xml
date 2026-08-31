@@ -237,7 +237,6 @@
     <string name="settings_language_english">English</string>
     <string name="settings_language_simplified_chinese">Simplified Chinese</string>
     <string name="settings_language_contribute">Contribute to translation</string>
-    <string name="settings_language_simplified_chinese">Simplified Chinese</string>
 
     <string name="settings_theme_title">Theme</string>
     <string name="theme_system">Device Default</string>

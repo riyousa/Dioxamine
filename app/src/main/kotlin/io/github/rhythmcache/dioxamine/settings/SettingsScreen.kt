@@ -136,7 +136,7 @@ fun SettingsScreen(vm: AdbViewModel) {
                     }
                 }
             }.onSuccess {
-                Toast.makeText(context, R.string.msg_key_exported, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.msg_key_exported), Toast.LENGTH_SHORT).show()
             }.onFailure { e ->
                 Toast.makeText(context, context.getString(R.string.msg_export_failed, e.message ?: ""), Toast.LENGTH_LONG).show()
             }
