@@ -1,204 +1,238 @@
-# Dioxamine
+# adb-mobile
 
 <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_512.png" width="128" height="128" alt="Dioxamine" align="right" />
 
+**adb-mobile** 可以让 Android 手机或平板直接作为 **ADB**、**Scrcpy** 和 **Fastboot** 主机使用。通过 USB OTG 或[无线 ADB（Wi-Fi）](https://rhythmcache.github.io/Dioxamine/book/user-guide/connecting-devices.html)连接另一台 Android 设备后，即可投屏并进行触控、刷写分区、旁加载更新、解锁 Bootloader、管理文件和应用，或运行自定义插件；无需电脑，也无需 Root。
 
-**Dioxamine** lets you run **ADB**, **Scrcpy**, and **Fastboot** directly from your Android phone or tablet. Connect another device via USB OTG or [Wireless ADB (Wi-Fi)](https://rhythmcache.github.io/Dioxamine/book/user-guide/connecting-devices.html) to mirror screens with full touch control, flash partitions, sideload, unlock bootloaders, manage files and apps, or run custom plugins. No PC or root required.
+> [!IMPORTANT]
+> 本仓库是 [rhythmcache/Dioxamine](https://github.com/rhythmcache/Dioxamine) 的非官方简体中文本地化版本。核心功能、项目名称及原始版权归原项目及其贡献者所有；简体中文翻译和本地化适配由 [riyousa](https://github.com/riyousa) 维护。英文说明、完整文档及最新上游开发进展请以[原项目](https://github.com/rhythmcache/Dioxamine)为准。
 
 <table align="center">
   <tr>
-    <th align="center">ADB Tools</th>
-    <th align="center">Process Telemetry</th>
-    <th align="center">Screen Mirroring</th>
-    <th align="center">Fastboot Flasher</th>
-    <th align="center">App Settings</th>
+    <th align="center">ADB 工具</th>
+    <th align="center">进程监控</th>
+    <th align="center">屏幕镜像</th>
+    <th align="center">Fastboot 刷写</th>
+    <th align="center">应用设置</th>
   </tr>
   <tr>
-    <td align="center"><img src="assets/screenshots/adb_management.jpg" width="180" alt="ADB Management" /></td>
-    <td align="center"><img src="assets/screenshots/process_manager.jpg" width="180" alt="Process Telemetry" /></td>
-    <td align="center"><img src="assets/screenshots/scrcpy_mirroring.jpg" width="180" alt="Screen Mirroring" /></td>
-    <td align="center"><img src="assets/screenshots/fastboot_flashing.jpg" width="180" alt="Fastboot Flashing" /></td>
-    <td align="center"><img src="assets/screenshots/settings.jpg" width="180" alt="App Settings" /></td>
+    <td align="center"><img src="assets/screenshots/adb_management.jpg" width="180" alt="ADB 管理" /></td>
+    <td align="center"><img src="assets/screenshots/process_manager.jpg" width="180" alt="进程监控" /></td>
+    <td align="center"><img src="assets/screenshots/scrcpy_mirroring.jpg" width="180" alt="屏幕镜像" /></td>
+    <td align="center"><img src="assets/screenshots/fastboot_flashing.jpg" width="180" alt="Fastboot 刷写" /></td>
+    <td align="center"><img src="assets/screenshots/settings.jpg" width="180" alt="应用设置" /></td>
   </tr>
 </table>
 
 <p align="center">
-  <a href="SCREENSHOTS.md"><b>📸 View Full Screenshots Gallery (All 12 Features) →</b></a>
+  <a href="SCREENSHOTS.md"><b>📸 查看完整截图画廊（全部 12 项功能）→</b></a>
 </p>
 
-It focuses on:
+这个项目专注于：
 
- - **PC-free control**: full ADB, Fastboot, and Scrcpy client running phone-to-phone
- - **flashing & recovery**: flash images, live-boot recoveries/kernels, and unlock bootloaders over USB OTG
- - **non-intrusiveness**: no root or client app needed on the connected device
- - **extensibility**: build and install custom tools with the HTML/JS plugin engine
+- **脱离电脑操作**：在手机之间直接使用完整的 ADB、Fastboot 和 Scrcpy 功能
+- **刷写与救援**：通过 USB OTG 刷写镜像、临时启动 Recovery/内核以及解锁 Bootloader
+- **低侵入性**：被控设备无需 Root，也无需安装客户端应用
+- **可扩展性**：使用 HTML/JavaScript 插件引擎构建和安装自定义工具
 
-## Features
+## 简体中文本地化
 
-### Scrcpy Screen Mirroring and Audio
-- [Real-time display mirroring](https://rhythmcache.github.io/Dioxamine/book/user-guide/scrcpy-mirroring/screen-mirroring.html) with full multi-touch and hardware key control
-- [Audio forwarding](https://rhythmcache.github.io/Dioxamine/book/user-guide/scrcpy-mirroring/settings-tuning.html) (Android 11+)
-- [Camera streaming](https://rhythmcache.github.io/Dioxamine/book/user-guide/scrcpy-mirroring/camera-streaming.html) (Android 12+; front and rear cameras, flashlight/torch toggle, high-FPS modes)
-- [Mirroring with target screen off](https://rhythmcache.github.io/Dioxamine/book/user-guide/scrcpy-mirroring/screen-mirroring.html) (saves battery and reduces heat)
-- [Touchpad & PC keyboard mode](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/touchpad-keyboard.html) via UHID simulation
-- Configurable codecs (**H.264**, **H.265 / HEVC**, **AV1**), bitrate, resolution, and FPS
+- 可在“设置 → 语言”中选择“简体中文”，也可跟随系统语言
+- 已覆盖主要界面、对话框、操作提示、无障碍描述及 Fastlane 商店元数据
+- 使用独立包名 `io.github.riyousa.dioxamine`，可与原项目官方版同时安装；两个版本的应用数据和设置互不相通
+- 保留英文资源作为默认语言，缺失翻译时会自动回退到英文
+- 翻译相关问题请提交到[本仓库 Issues](https://github.com/riyousa/adb-mobile/issues)；核心功能问题可先查阅[原项目 Issues](https://github.com/rhythmcache/Dioxamine/issues)
 
-### Fastboot Flasher and Bootloader Tools (USB OTG)
-- [Flash partition images](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/flashing-images.html) (`boot`, `recovery`, `vendor_boot`, `init_boot`, `system`, etc.)
-- [Live boot images](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/boot-image.html) (`fastboot boot <image>`) to test custom kernels or recoveries without flashing
-- [Unlock & lock bootloader](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/lock-bootloader.html) state directly from your phone
-- [Variable inspector](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/variables.html) (`getvar all`, check current slot A/B)
-- [Interactive Fastboot shell](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/fastboot-shell.html) for raw commands
+## 功能
 
-### ADB Management and Diagnostics
-- [Process manager](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/process-manager.html): live CPU & RAM usage telemetry, process inspector, search filter, Force Stop, and PID termination
-- [Miscellaneous tools](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/miscellaneous.html): display density (DPI) & resolution changer, screen orientation, stay awake, demo mode, touch visualization, window animation scale, battery emulation, and deep link URL launcher
-- [File manager](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/file-manager.html): browse target filesystem, upload, download, and manage storage
-- [Package manager](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/package-manager.html): install split APKs, debloat/disable system apps, extract and pull APKs
-- [Reboot menu](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/reboot-menu.html): one-tap reboot to System, Recovery, Bootloader, FastbootD, EDL, or Power Off
-- [Sideload & rescue](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/sideload-rescue.html): flash OTA packages (`.zip`) via `adb sideload` or restore bricked devices
-- [Screenshot capture](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/screenshots.html): take high-res screenshots pulled directly from the target frame buffer
-- [Interactive ADB shell](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/terminal-shell.html)
+### Scrcpy 屏幕镜像与音频
 
-### Custom Plugin Engine
-- Run custom modular tools built with HTML5, CSS, and JavaScript inside a sandboxed WebView
-- Direct JavaScript Bridge API for shell commands, file push/pull, port forwarding, and Material 3 theming
-- Install third-party `.zip` plugins or build your own
-- Check out the [Terminal Plugin](https://github.com/rhythmcache/Terminal) or read the [Plugin Development Guide](https://rhythmcache.github.io/Dioxamine/book/plugins/overview.html)
+- [实时屏幕镜像](https://rhythmcache.github.io/Dioxamine/book/user-guide/scrcpy-mirroring/screen-mirroring.html)，支持完整的多点触控和硬件按键控制
+- [音频转发](https://rhythmcache.github.io/Dioxamine/book/user-guide/scrcpy-mirroring/settings-tuning.html)（Android 11 及以上）
+- [摄像头串流](https://rhythmcache.github.io/Dioxamine/book/user-guide/scrcpy-mirroring/camera-streaming.html)（Android 12 及以上；支持前后摄像头、闪光灯和高帧率模式）
+- [关闭目标设备屏幕时继续镜像](https://rhythmcache.github.io/Dioxamine/book/user-guide/scrcpy-mirroring/screen-mirroring.html)，以降低耗电和发热
+- 通过 UHID 模拟实现[触控板和电脑键盘模式](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/touchpad-keyboard.html)
+- 可配置 **H.264**、**H.265/HEVC**、**AV1** 编解码器，以及码率、分辨率和帧率
 
-## Prerequisites
+### Fastboot 刷写与 Bootloader 工具（USB OTG）
 
-- **Host Device**: Android 7.0+ (API 24+)
-- **Target Device**: Android 5.0+ (API 21+)
-  - Audio forwarding requires Android 11+ (API 30+)
-  - Camera streaming requires Android 12+ (API 31+)
-  - Wireless ADB QR code pairing requires Android 11+ (API 30+)
+- [刷写分区镜像](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/flashing-images.html)，例如 `boot`、`recovery`、`vendor_boot`、`init_boot` 和 `system`
+- 使用 `fastboot boot <镜像>` [临时启动镜像](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/boot-image.html)，无需刷入即可测试自定义内核或 Recovery
+- 直接在手机上[解锁或重新锁定 Bootloader](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/lock-bootloader.html)
+- 使用[变量查看器](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/variables.html)执行 `getvar all`、检查当前 A/B 槽位等信息
+- 通过[交互式 Fastboot Shell](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/fastboot-shell.html)运行原始命令
 
-Make sure [USB debugging](https://developer.android.com/studio/debug/dev-options#enable) is enabled on the target device.
+### ADB 管理与诊断
 
-On **Xiaomi / HyperOS / MIUI** devices, you must also enable **USB debugging (Security Settings)** in Developer Options to allow touch control and input injection.
+- [进程管理器](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/process-manager.html)：实时监控 CPU 和内存占用、查看进程详情、搜索筛选，并支持强行停止应用或终止指定 PID
+- [杂项工具](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/miscellaneous.html)：调整显示密度（DPI）与分辨率、屏幕方向、保持唤醒、演示模式、触摸反馈、窗口动画缩放、电池状态模拟，以及打开深层链接 URL
+- [文件管理器](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/file-manager.html)：浏览目标文件系统，上传、下载和管理文件
+- [应用管理器](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/package-manager.html)：安装拆分 APK、停用系统应用，以及提取 APK
+- [重启菜单](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/reboot-menu.html)：一键重启至系统、Recovery、Bootloader、FastbootD、EDL，或关机
+- [旁加载与设备救援](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/sideload-rescue.html)：使用 `adb sideload` 刷入 OTA 包（`.zip`）或尝试恢复无法正常启动的设备
+- [屏幕截图](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/screenshots.html)：直接从目标设备捕获并拉取高分辨率截图
+- [交互式 ADB Shell](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/terminal-shell.html)
 
-## Documentation
+### 自定义插件引擎
 
-Full documentation, guides, and API specifications are available in the [Dioxamine Book](https://rhythmcache.github.io/Dioxamine/book/):
+- 在沙盒 WebView 中运行使用 HTML5、CSS 和 JavaScript 构建的模块化工具
+- JavaScript Bridge API 支持 Shell 命令、文件推送/拉取、端口转发和 Material 3 主题
+- 支持安装第三方 `.zip` 插件，也可以自行开发插件
+- 可查看原项目的 [Terminal 插件](https://github.com/rhythmcache/Terminal)和[插件开发指南](https://rhythmcache.github.io/Dioxamine/book/plugins/overview.html)
 
-- **User Guide**
-  - [Connecting Devices (USB OTG, Wireless ADB, QR Pairing)](https://rhythmcache.github.io/Dioxamine/book/user-guide/connecting-devices.html)
-  - [OEM Setup & Troubleshooting](https://rhythmcache.github.io/Dioxamine/book/user-guide/oem-setup.html)
-  - [ADB Built-in Tools](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/overview.html)
-  - [Scrcpy Screen Mirroring & Audio](https://rhythmcache.github.io/Dioxamine/book/user-guide/scrcpy-mirroring/screen-mirroring.html)
-  - [Fastboot Tools](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/getting-started.html)
-- **Plugin Development**
-  - [Plugin Overview & Architecture](https://rhythmcache.github.io/Dioxamine/book/plugins/overview.html)
-  - [Quickstart Guide](https://rhythmcache.github.io/Dioxamine/book/plugins/quickstart.html)
-  - [Manifest Specification (`plugin.json`)](https://rhythmcache.github.io/Dioxamine/book/plugins/manifest.html)
-  - [JavaScript Bridge API Reference](https://rhythmcache.github.io/Dioxamine/book/plugins/api-reference.html)
+## 使用要求
 
-## Build instructions
+- **主控设备**：Android 7.0 及以上（API 24+）
+- **目标设备**：Android 5.0 及以上（API 21+）
+  - 音频转发需要 Android 11 及以上（API 30+）
+  - 摄像头串流需要 Android 12 及以上（API 31+）
+  - 无线 ADB 二维码配对需要 Android 11 及以上（API 30+）
 
-Clone the repository recursively (to include the embedded `scrcpy` submodule):
+请先在目标设备上启用 [USB 调试](https://developer.android.com/studio/debug/dev-options#enable)。
+
+在 **小米 / HyperOS / MIUI** 设备上，还需要在开发者选项中启用“**USB 调试（安全设置）**”，否则可能无法使用触控和输入注入功能。
+
+> [!CAUTION]
+> 刷写镜像、解锁 Bootloader、停用系统应用等操作可能导致数据丢失或设备无法启动。请确认文件和目标分区正确，并提前备份重要数据。
+
+## 文档
+
+完整使用指南和 API 说明由原项目维护，目前以英文为主：
+
+- **用户指南**
+  - [连接设备（USB OTG、无线 ADB、二维码配对）](https://rhythmcache.github.io/Dioxamine/book/user-guide/connecting-devices.html)
+  - [厂商设置与故障排除](https://rhythmcache.github.io/Dioxamine/book/user-guide/oem-setup.html)
+  - [ADB 内置工具](https://rhythmcache.github.io/Dioxamine/book/user-guide/adb-tools/overview.html)
+  - [Scrcpy 屏幕镜像与音频](https://rhythmcache.github.io/Dioxamine/book/user-guide/scrcpy-mirroring/screen-mirroring.html)
+  - [Fastboot 工具](https://rhythmcache.github.io/Dioxamine/book/user-guide/fastboot/getting-started.html)
+- **插件开发**
+  - [插件概述与架构](https://rhythmcache.github.io/Dioxamine/book/plugins/overview.html)
+  - [快速入门](https://rhythmcache.github.io/Dioxamine/book/plugins/quickstart.html)
+  - [`plugin.json` 清单规范](https://rhythmcache.github.io/Dioxamine/book/plugins/manifest.html)
+  - [JavaScript Bridge API 参考](https://rhythmcache.github.io/Dioxamine/book/plugins/api-reference.html)
+
+## 构建
+
+浅克隆本仓库，并同时获取内嵌的 `scrcpy` 子模块：
 
 ```bash
-git clone --depth 1 --recurse-submodules https://github.com/rhythmcache/Dioxamine.git
+git clone --depth 1 --recurse-submodules https://github.com/riyousa/adb-mobile.git
 cd Dioxamine
 export JAVA_HOME=/path/to/java
 export ANDROID_NDK_ROOT=/path/to/android/ndk
 ./gradlew assembleDebug
 ```
 
-Requirements:
+构建环境要求：
+
 - JDK 17+
-- Android SDK (API 37)
-- Android NDK (`ANDROID_NDK_HOME` set)
+- Android SDK（API 37）
+- Android NDK，并已设置 `ANDROID_NDK_ROOT`
 
-## Contributing
+若要参与原项目开发或获取尚未同步的最新功能，请使用[上游仓库](https://github.com/rhythmcache/Dioxamine)。
 
-Contributions are welcome! If you would like to contribute code, report bugs, or help translate Dioxamine into your language, feel free to open an issue or pull request.
+## 参与贡献
 
-### Translations
+欢迎贡献代码、报告问题或帮助翻译 Dioxamine。你可以随时提交 Issue 或 Pull Request。
 
-We want Dioxamine to be accessible in as many languages as possible.
+### 翻译
 
-- [x] English (`en`) - default
-- [x] Simplified Chinese (`zh-CN`) - @riyousa
-- [x] Hindi (`hi`) - @rhythmcache
+我们希望尽可能让更多语言的用户都能使用 Dioxamine。
 
+- [x] 英语（`en`）— 默认语言
+- [x] 简体中文（`zh-CN`）— @riyousa
+- [x] 印地语（`hi`）— @rhythmcache
 
-![Translation Coverage](badges/coverage.svg)
+![翻译覆盖率](badges/coverage.svg)
 
+<!-- 贡献者：提交翻译时，请在上方勾选并添加你的语言 -->
 
+### 🌐 如何添加一种语言翻译
 
-<!-- Contributors: Add your language checkmark below when submitting a translation -->
+#### 1. Fork 并克隆
 
-### 🌐 How to Add a Language Translation
+Fork 原项目，然后将你的 Fork 克隆到本地：
 
-#### 1. Fork & Clone
-Fork this repository and clone your fork locally:
 ```bash
-git clone https://github.com/<your-username>/Dioxamine.git
+git clone https://github.com/<你的用户名>/Dioxamine.git
 cd Dioxamine
-git checkout -b translate-<language>
+git checkout -b translate-<语言>
 ```
 
-#### 2. Create the Translation File
-1. Create a new folder under `app/src/main/res/`:
-   ```bash
-   app/src/main/res/values-<locale>/
-   ```
-   *(e.g., `values-es` for Spanish, `values-ru` for Russian, `values-zh-rCN` for Simplified Chinese, `values-pt-rBR` for Brazilian Portuguese)*
-2. Copy the base strings from [`app/src/main/res/values/strings.xml`](app/src/main/res/values/strings.xml) into your new folder: `app/src/main/res/values-<locale>/strings.xml`.
-3. Translate the strings inside `<string name="...">Your Translation</string>`.
-   > **Note:**
-   > - Keep placeholders like `%s`, `%d`, `%1$s`, HTML tags, and XML entities (`&amp;`, `\'`) unchanged.
-   > - **AI / LLM Translations:** Using LLMs (e.g. ChatGPT, Claude, Gemini) to assist or draft translations is totally allowed! However, please **manually review and refine the output**. LLMs often generate overly formal, archaic, or literal translations that aren't commonly spoken in daily conversation or standard mobile apps. Please adapt the phrasing so it feels natural, casual, and intuitive for native speakers.
+#### 2. 创建翻译文件
 
-#### 3. Register Your Language in Code
-1. In [`app/src/main/res/values/strings.xml`](app/src/main/res/values/strings.xml), add a string resource for your language's native name (endonym) with `translatable="false"` (do not translate it in other language folders):
+1. 在 `app/src/main/res/` 下创建一个新目录：
+
+   ```text
+   app/src/main/res/values-<区域设置>/
+   ```
+
+   例如，西班牙语使用 `values-es`，俄语使用 `values-ru`，简体中文使用 `values-zh-rCN`，巴西葡萄牙语使用 `values-pt-rBR`。
+
+2. 将 [`app/src/main/res/values/strings.xml`](app/src/main/res/values/strings.xml) 复制到 `app/src/main/res/values-<区域设置>/strings.xml`。
+
+3. 翻译 `<string name="...">待翻译文本</string>` 中的文本。
+
+   > [!NOTE]
+   > - 请原样保留 `%s`、`%d`、`%1$s` 等占位符、HTML 标签和 XML 实体（如 `&amp;`、`\'`）。
+   > - **AI/大语言模型翻译**：完全可以使用 ChatGPT、Claude、Gemini 等大语言模型辅助或起草翻译，但请务必人工审校和润色。模型输出经常过于正式、古旧或直译，不符合日常表达和移动应用惯例；请调整措辞，使其对母语用户而言自然、简洁且直观。
+
+#### 3. 注册语言
+
+1. 在 [`app/src/main/res/values/strings.xml`](app/src/main/res/values/strings.xml) 中，以该语言的本族语名称添加字符串资源，并设置 `translatable="false"`（不要在其他语言目录中翻译它）：
+
    ```xml
    <string name="settings_language_spanish" translatable="false">Español</string>
    ```
-2. In [`app/src/main/kotlin/io/github/rhythmcache/dioxamine/settings/SupportedLanguages.kt`](app/src/main/kotlin/io/github/rhythmcache/dioxamine/settings/SupportedLanguages.kt), add an entry to the `supportedLanguages` list:
+
+2. 在 [`app/src/main/kotlin/io/github/rhythmcache/dioxamine/settings/SupportedLanguages.kt`](app/src/main/kotlin/io/github/rhythmcache/dioxamine/settings/SupportedLanguages.kt) 的 `supportedLanguages` 列表中加入一项：
+
    ```kotlin
    LanguageOption(R.string.settings_language_spanish, "es"),
    ```
 
-#### 4. Add Checkmark in README & Open PR
-1. Under the **Translations** section above in `README.md`, add your language checkmark:
+#### 4. 更新清单并提交 PR
+
+1. 在 README 上方的“翻译”部分勾选并添加你的语言：
+
    ```markdown
-   - [x] Spanish (`es`) - @your-github-username
+   - [x] 西班牙语（`es`）— @你的GitHub用户名
    ```
-2. Commit your changes, push to your fork, and submit a **Pull Request**:
+
+2. 提交修改、推送到你的 Fork，然后创建 Pull Request：
+
    ```bash
    git add .
    git commit -m "i18n: add Spanish translation"
    git push origin translate-spanish
    ```
 
-## Backends used by this project
+## 项目使用的后端
 
 - [rhythmcache/adb-kt](https://github.com/rhythmcache/adb-kt)
 - [rhythmcache/fastboot-kt](https://github.com/rhythmcache/fastboot-kt)
 - [Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 
+## 社区与问题反馈
 
-## Community
+- **中文翻译问题**：[本地化仓库 Issues](https://github.com/riyousa/adb-mobile/issues)
+- **原项目 Telegram 频道**：[t.me/tr1ple_fault](https://t.me/tr1ple_fault)
+- **核心功能问题与建议**：[原项目 Issues](https://github.com/rhythmcache/Dioxamine/issues)
 
-- **Telegram Channel**: [t.me/tr1ple_fault](https://t.me/tr1ple_fault)
-- **Issues & Suggestions**: [GitHub Issues](https://github.com/rhythmcache/Dioxamine/issues)
+## 项目来源与致谢
 
-## License
+本地化版本基于 [rhythmcache/Dioxamine](https://github.com/rhythmcache/Dioxamine) 修改，感谢原作者 **rhythmcache** 及所有上游贡献者开发和维护 Dioxamine。上游项目使用的 ADB、Fastboot、Scrcpy 及其他第三方组件，其版权和许可归各自作者所有。
 
-    Copyright (C) 2026 rhythmcache
+- **原项目与核心开发**：[rhythmcache/Dioxamine](https://github.com/rhythmcache/Dioxamine)
+- **简体中文本地化**：[riyousa/adb-mobile](https://github.com/riyousa/adb-mobile)
+- **原项目文档**：[Dioxamine Book](https://rhythmcache.github.io/Dioxamine/book/)
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+## 许可证
 
-        http://www.apache.org/licenses/LICENSE-2.0
+本项目沿用原项目的 [Apache License 2.0](LICENSE)。原始版权声明予以保留：
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+```text
+Copyright (C) 2026 rhythmcache
+```
 
+本地化修改同样依照 Apache License 2.0 提供，且不附带任何明示或暗示的担保。
