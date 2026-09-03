@@ -14,8 +14,12 @@ import io.github.rhythmcache.dioxamine.adb.AdbViewModel
 
 import io.github.rhythmcache.dioxamine.adb.builtin.filemanager.FileManagerScreen
 import io.github.rhythmcache.dioxamine.adb.builtin.filemanager.FileManagerTile
+import io.github.rhythmcache.dioxamine.adb.builtin.misc.MiscScreen
+import io.github.rhythmcache.dioxamine.adb.builtin.misc.MiscTile
 import io.github.rhythmcache.dioxamine.adb.builtin.packagemanager.PackageManagerScreen
 import io.github.rhythmcache.dioxamine.adb.builtin.packagemanager.PackageManagerTile
+import io.github.rhythmcache.dioxamine.adb.builtin.processmanager.ProcessManagerScreen
+import io.github.rhythmcache.dioxamine.adb.builtin.processmanager.ProcessManagerTile
 import io.github.rhythmcache.dioxamine.adb.builtin.reboot.RebootScreen
 import io.github.rhythmcache.dioxamine.adb.builtin.reboot.RebootTile
 import io.github.rhythmcache.dioxamine.adb.builtin.remotecontrol.RemoteControlScreen
@@ -32,8 +36,10 @@ sealed class BuiltInSubScreen {
     object Touchpad : BuiltInSubScreen()
     object FileManager : BuiltInSubScreen()
     object PackageManager : BuiltInSubScreen()
-    object Reboot : BuiltInSubScreen()
+    object ProcessManager : BuiltInSubScreen()
+    object Misc : BuiltInSubScreen()
     object Screenshot : BuiltInSubScreen()
+    object Reboot : BuiltInSubScreen()
 }
 
 @Composable
@@ -96,6 +102,18 @@ fun BuiltInActionsTab(vm: AdbViewModel) {
                     )
                 }
                 item {
+                    ProcessManagerTile(
+                        isConnected = isConnected,
+                        onClick = { activeSubScreen = BuiltInSubScreen.ProcessManager }
+                    )
+                }
+                item {
+                    MiscTile(
+                        isConnected = isConnected,
+                        onClick = { activeSubScreen = BuiltInSubScreen.Misc }
+                    )
+                }
+                item {
                     ScreencapTile(
                         isConnected = isConnected,
                         onClick = { activeSubScreen = BuiltInSubScreen.Screenshot }
@@ -136,6 +154,18 @@ fun BuiltInActionsTab(vm: AdbViewModel) {
         }
         BuiltInSubScreen.PackageManager -> {
             PackageManagerScreen(
+                vm = vm,
+                onBack = { activeSubScreen = BuiltInSubScreen.TilesList }
+            )
+        }
+        BuiltInSubScreen.ProcessManager -> {
+            ProcessManagerScreen(
+                vm = vm,
+                onBack = { activeSubScreen = BuiltInSubScreen.TilesList }
+            )
+        }
+        BuiltInSubScreen.Misc -> {
+            MiscScreen(
                 vm = vm,
                 onBack = { activeSubScreen = BuiltInSubScreen.TilesList }
             )
